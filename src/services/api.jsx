@@ -7,7 +7,7 @@ export const fetchTrendingMovies = async () => {
     const resp = await axios.get(
       `https://api.themoviedb.org/3/trending/movie/day?api_key=${API_KEY}&language=en-US`
     );
-    console.log(resp.data.results);
+    // console.log(resp.data.results);
     return resp.data.results;
   } catch (error) {
     console.log(error);
@@ -19,7 +19,7 @@ export const fetchMovieDetails = async id => {
     const resp = await axios.get(
       `https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}&language=en-US`
     );
-    console.log(resp.data);
+    // console.log(resp.data);
     return resp.data;
   } catch (error) {
     console.log(error);
@@ -31,8 +31,8 @@ export const fetchMovieCast = async id => {
     const resp = await axios.get(
       `https://api.themoviedb.org/3/movie/${id}/credits?api_key=${API_KEY}&language=en-US`
     );
-    console.log(resp.data);
-    return resp.data;
+    // console.log(resp.data);
+    return resp.data.cast;
   } catch (error) {
     console.log(error);
   }
@@ -43,21 +43,21 @@ export const fetchMovieReviews = async id => {
     const resp = await axios.get(
       `https://api.themoviedb.org/3/movie/${id}/reviews?api_key=${API_KEY}&language=en-US`
     );
-    console.log(resp.data);
-    return resp.data;
+    // console.log(resp.data.results);
+    return resp.data.results;
   } catch (error) {
     console.log(error);
   }
 };
 
-// export const fetchMovieSearch = async searchQuery => {
-//   try {
-//     const resp = await axios.get(
-//       `https://api.themoviedb.org/3/search/movie/${searchQuery}/reviews?api_key=${API_KEY}&language=en-US`
-//     );
-//     console.log(resp.data);
-//     return resp.data;
-//   } catch (error) {
-//     console.log(error);
-//   }
-// };
+export const fetchMovieSearch = async searchQuery => {
+  try {
+    const resp = await axios.get(
+      `https://api.themoviedb.org/3/search/movie?query=${searchQuery}&api_key=${API_KEY}&language=en-US`
+    );
+    // console.log(resp.data.results);
+    return resp.data.results;
+  } catch (error) {
+    console.log(error);
+  }
+};
